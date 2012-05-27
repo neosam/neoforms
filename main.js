@@ -5,7 +5,7 @@ define('neoforms', [
         newInput: function() {
             return Input();
         },
-        changeInputNeoinput: function(selector, context) {
+        infectForm: function(selector, context) {
             var objects = {};
             _.each($(selector, context), function(htmlelem) {
                 var elem = $(htmlelem)
