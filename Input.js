@@ -1,13 +1,13 @@
 define([
     'jquery'
-  , 'underscore'
-  , 'backbone'
-], function($, _, Backbone) {
+], function($) {
     return function() {
         var container = $('<span class="neoinput"></span>');
         var inputElem = $('<input>');
         var labelElem = $('<span>');
         var value = '';
+
+        var onChange = function() {};
 
         function editMode() {
             inputElem.val(value);
@@ -24,6 +24,7 @@ define([
 
         function editDone() {
             value = inputElem.val();
+            onChange(value);
             viewMode();
         }
 
@@ -38,6 +39,15 @@ define([
         return {
             getContainer: function() {
                 return container;
+            },
+            getLabel: function() {
+                return label;
+            },
+            setLabel: function(v) {
+                value = v;
+            }
+            setChangeFunction: function(func) {
+                onChange = func;
             }
         };
     };
