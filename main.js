@@ -3,7 +3,7 @@ define('neoforms', [
 ], function(Input) {
     return {
         newInput: function() {
-            return Input;
+            return Input();
         },
         doAlert: function() {
             alert('neoforms alert!');
