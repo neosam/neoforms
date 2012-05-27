@@ -14,6 +14,8 @@ define([
             container.html('');
             container.append(inputElem);
             inputElem.change(editDone);
+            inputElem.focusout(viewMode);
+            inputElem.focus();
         }
         function viewMode() {
             labelElem.html(value);
@@ -28,9 +30,12 @@ define([
             viewMode();
         }
 
+        function update() {
+            inputElem.val(value);
+            labelElem.html(value);
+        }
+
         function init() {
-            inputElem.change(editDone);
-            labelElem.click(editMode);
             editMode();
         }
 
@@ -40,12 +45,13 @@ define([
             getContainer: function() {
                 return container;
             },
-            getLabel: function() {
-                return label;
+            getValue: function() {
+                return value;
             },
-            setLabel: function(v) {
+            setValue: function(v) {
                 value = v;
-            }
+                update();
+            },
             setChangeFunction: function(func) {
                 onChange = func;
             }
